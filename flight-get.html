@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    RED.nodes.registerType('flight-get', {
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "node-red-contrib-flight/flight-get.png",
+        label: function() {
+            return this.name || "flight-get";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="flight-get">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="flight-get">
+    <p>Este nó consulta informações de voo usando o código ICAO fornecido na entrada.</p>
+    <p>O payload da mensagem de entrada deve conter o código ICAO.</p>
+</script>
