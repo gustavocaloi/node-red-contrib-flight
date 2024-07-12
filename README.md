@@ -20,7 +20,7 @@ Este nó permite que você consulte informações de voo fornecendo um código I
     {
         "id": "f0b6bbfb3c338919",
         "type": "group",
-        "z": "97e3d9225d72d0ca",
+        "z": "f1bdd0a078a6dc21",
         "style": {
             "stroke": "#999999",
             "stroke-opacity": "1",
@@ -32,30 +32,31 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         },
         "nodes": [
             "4e57e78f7ad91d8a",
-            "8dd9cfdbaf0e928a",
             "73f2a8ed51ea5d46",
             "957d0143ef781efd",
-            "44a11b9c64b313f1"
+            "44a11b9c64b313f1",
+            "19328182eca4596e",
+            "1152634daf89d870"
         ],
-        "x": 54,
-        "y": 19,
-        "w": 672,
+        "x": 74,
+        "y": 119,
+        "w": 852,
         "h": 122
     },
     {
         "id": "4e57e78f7ad91d8a",
         "type": "inject",
-        "z": "97e3d9225d72d0ca",
+        "z": "f1bdd0a078a6dc21",
         "g": "f0b6bbfb3c338919",
         "name": "",
         "props": [],
-        "repeat": "",
+        "repeat": "60",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
-        "y": 100,
+        "x": 170,
+        "y": 200,
         "wires": [
             [
                 "957d0143ef781efd"
@@ -63,40 +64,27 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         ]
     },
     {
-        "id": "8dd9cfdbaf0e928a",
-        "type": "flight-icao",
-        "z": "97e3d9225d72d0ca",
-        "g": "f0b6bbfb3c338919",
-        "name": "",
-        "x": 480,
-        "y": 100,
-        "wires": [
-            [
-                "73f2a8ed51ea5d46"
-            ]
-        ]
-    },
-    {
         "id": "73f2a8ed51ea5d46",
         "type": "debug",
-        "z": "97e3d9225d72d0ca",
+        "z": "f1bdd0a078a6dc21",
         "g": "f0b6bbfb3c338919",
-        "name": "debug 1",
+        "name": "flight-get",
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
         "statusType": "auto",
-        "x": 620,
-        "y": 100,
+        "x": 820,
+        "y": 200,
         "wires": []
     },
     {
         "id": "957d0143ef781efd",
         "type": "change",
-        "z": "97e3d9225d72d0ca",
+        "z": "f1bdd0a078a6dc21",
         "g": "f0b6bbfb3c338919",
         "name": "Preencha o ICAO",
         "rules": [
@@ -106,6 +94,13 @@ Este nó permite que você consulte informações de voo fornecendo um código I
                 "pt": "msg",
                 "to": "C4L0I",
                 "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -113,24 +108,64 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
-        "y": 100,
+        "x": 330,
+        "y": 200,
         "wires": [
             [
-                "8dd9cfdbaf0e928a"
+                "1152634daf89d870"
             ]
         ]
     },
     {
         "id": "44a11b9c64b313f1",
         "type": "comment",
-        "z": "97e3d9225d72d0ca",
+        "z": "f1bdd0a078a6dc21",
         "g": "f0b6bbfb3c338919",
         "name": "",
         "info": "Envie payload com o codigo ICAO e receba retorno com as informaçoes do voo",
-        "x": 160,
-        "y": 60,
+        "x": 180,
+        "y": 160,
         "wires": []
+    },
+    {
+        "id": "19328182eca4596e",
+        "type": "flight-get",
+        "z": "f1bdd0a078a6dc21",
+        "g": "f0b6bbfb3c338919",
+        "name": "",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "73f2a8ed51ea5d46"
+            ]
+        ]
+    },
+    {
+        "id": "1152634daf89d870",
+        "type": "delay",
+        "z": "f1bdd0a078a6dc21",
+        "g": "f0b6bbfb3c338919",
+        "name": "API Rate Limit",
+        "pauseType": "queue",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "19328182eca4596e"
+            ]
+        ]
     }
 ]
 ```
