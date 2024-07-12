@@ -50,7 +50,7 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "g": "f0b6bbfb3c338919",
         "name": "",
         "props": [],
-        "repeat": "60",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
