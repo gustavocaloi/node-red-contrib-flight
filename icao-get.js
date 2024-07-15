@@ -1,20 +1,20 @@
 const axios = require('axios');
 
 module.exports = function(RED) {
-    function FlightGetNode(config) {
+    function IcaoGetNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
 
         node.on('input', function(msg) {
             const axios = require('axios');
-            const flightCode = msg.payload;
+            const icaoCode = msg.payload;
 
-            if (!flightCode) {
-                node.error("FLIGHT code is required");
+            if (!icaoCode) {
+                node.error("ICAO code is required");
                 return;
             }
 
-            const apiUrl = `https://api.oiot.com.br/flight/icao/?icao=${flightCode}`;
+            const apiUrl = `https://api.oiot.com.br/flight/icao/?icao=${icaoCode}`;
 
             axios.get(apiUrl)
                 .then(response => {
@@ -26,5 +26,5 @@ module.exports = function(RED) {
                 });
         });
     }
-    RED.nodes.registerType("flight-get", FlightGetNode);
+    RED.nodes.registerType("icao-get", IcaoGetNode);
 };

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = function(RED) {
-    function FlightGetNode(config) {
+    function AnacGetNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
 
@@ -14,7 +14,7 @@ module.exports = function(RED) {
                 return;
             }
 
-            const apiUrl = `https://api.oiot.com.br/flight/icao/?icao=${flightCode}`;
+            const apiUrl = `https://api.oiot.com.br/flight/anac/?flight=${flightCode}`;
 
             axios.get(apiUrl)
                 .then(response => {
@@ -26,5 +26,5 @@ module.exports = function(RED) {
                 });
         });
     }
-    RED.nodes.registerType("flight-get", FlightGetNode);
+    RED.nodes.registerType("anac-get", AnacGetNode);
 };
