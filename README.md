@@ -34,14 +34,13 @@ Este nó permite que você consulte informações de voo fornecendo um código I
             "4e57e78f7ad91d8a",
             "73f2a8ed51ea5d46",
             "957d0143ef781efd",
-            "44a11b9c64b313f1",
-            "19328182eca4596e",
-            "1152634daf89d870"
+            "1152634daf89d870",
+            "603423de4d0bae58"
         ],
         "x": 74,
-        "y": 119,
+        "y": 79,
         "w": 852,
-        "h": 122
+        "h": 82
     },
     {
         "id": "4e57e78f7ad91d8a",
@@ -50,13 +49,13 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "g": "f0b6bbfb3c338919",
         "name": "",
         "props": [],
-        "repeat": "",
+        "repeat": "60",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "x": 170,
-        "y": 200,
+        "y": 120,
         "wires": [
             [
                 "957d0143ef781efd"
@@ -68,7 +67,7 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "type": "debug",
         "z": "f1bdd0a078a6dc21",
         "g": "f0b6bbfb3c338919",
-        "name": "flight-get",
+        "name": "icao-get",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -78,7 +77,7 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "statusVal": "payload",
         "statusType": "auto",
         "x": 820,
-        "y": 200,
+        "y": 120,
         "wires": []
     },
     {
@@ -109,35 +108,10 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 200,
+        "y": 120,
         "wires": [
             [
                 "1152634daf89d870"
-            ]
-        ]
-    },
-    {
-        "id": "44a11b9c64b313f1",
-        "type": "comment",
-        "z": "f1bdd0a078a6dc21",
-        "g": "f0b6bbfb3c338919",
-        "name": "",
-        "info": "Envie payload com o codigo ICAO e receba retorno com as informaçoes do voo",
-        "x": 180,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "19328182eca4596e",
-        "type": "flight-get",
-        "z": "f1bdd0a078a6dc21",
-        "g": "f0b6bbfb3c338919",
-        "name": "",
-        "x": 680,
-        "y": 200,
-        "wires": [
-            [
-                "73f2a8ed51ea5d46"
             ]
         ]
     },
@@ -160,10 +134,658 @@ Este nó permite que você consulte informações de voo fornecendo um código I
         "allowrate": false,
         "outputs": 1,
         "x": 520,
-        "y": 200,
+        "y": 120,
         "wires": [
             [
-                "19328182eca4596e"
+                "603423de4d0bae58"
+            ]
+        ]
+    },
+    {
+        "id": "603423de4d0bae58",
+        "type": "icao-get",
+        "z": "f1bdd0a078a6dc21",
+        "g": "f0b6bbfb3c338919",
+        "name": "",
+        "x": 680,
+        "y": 120,
+        "wires": [
+            [
+                "73f2a8ed51ea5d46"
+            ]
+        ]
+    },
+    {
+        "id": "e6a6c2029dfc19a3",
+        "type": "group",
+        "z": "f1bdd0a078a6dc21",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "efff3c0a682bd853",
+            "ddefbbd000f547db",
+            "90999ed78a82bae6",
+            "ea60d80b2470dfb0",
+            "820283d9c72a6d8a"
+        ],
+        "x": 74,
+        "y": 179,
+        "w": 852,
+        "h": 82
+    },
+    {
+        "id": "efff3c0a682bd853",
+        "type": "inject",
+        "z": "f1bdd0a078a6dc21",
+        "g": "e6a6c2029dfc19a3",
+        "name": "",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "90999ed78a82bae6"
+            ]
+        ]
+    },
+    {
+        "id": "ddefbbd000f547db",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "e6a6c2029dfc19a3",
+        "name": "flight-get",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 820,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "90999ed78a82bae6",
+        "type": "change",
+        "z": "f1bdd0a078a6dc21",
+        "g": "e6a6c2029dfc19a3",
+        "name": "Preencha o FLIGHT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "CALOI",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 220,
+        "wires": [
+            [
+                "820283d9c72a6d8a"
+            ]
+        ]
+    },
+    {
+        "id": "ea60d80b2470dfb0",
+        "type": "flight-get",
+        "z": "f1bdd0a078a6dc21",
+        "g": "e6a6c2029dfc19a3",
+        "name": "",
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "ddefbbd000f547db"
+            ]
+        ]
+    },
+    {
+        "id": "820283d9c72a6d8a",
+        "type": "delay",
+        "z": "f1bdd0a078a6dc21",
+        "g": "e6a6c2029dfc19a3",
+        "name": "API Rate Limit",
+        "pauseType": "queue",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 220,
+        "wires": [
+            [
+                "ea60d80b2470dfb0"
+            ]
+        ]
+    },
+    {
+        "id": "7253d857a92ec8fc",
+        "type": "group",
+        "z": "f1bdd0a078a6dc21",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "868fa096948fcc49",
+            "3772b85ff244ab67",
+            "3589518a740addad",
+            "7662580f59e779c0",
+            "60abfc45a54188fb"
+        ],
+        "x": 74,
+        "y": 279,
+        "w": 852,
+        "h": 82
+    },
+    {
+        "id": "868fa096948fcc49",
+        "type": "inject",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7253d857a92ec8fc",
+        "name": "",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "3589518a740addad"
+            ]
+        ]
+    },
+    {
+        "id": "3772b85ff244ab67",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7253d857a92ec8fc",
+        "name": "anac-get",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 820,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3589518a740addad",
+        "type": "change",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7253d857a92ec8fc",
+        "name": "Preencha o FLIGHT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "CALOI",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "7662580f59e779c0"
+            ]
+        ]
+    },
+    {
+        "id": "7662580f59e779c0",
+        "type": "delay",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7253d857a92ec8fc",
+        "name": "API Rate Limit",
+        "pauseType": "queue",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "60abfc45a54188fb"
+            ]
+        ]
+    },
+    {
+        "id": "60abfc45a54188fb",
+        "type": "anac-get",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7253d857a92ec8fc",
+        "name": "",
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "3772b85ff244ab67"
+            ]
+        ]
+    },
+    {
+        "id": "7735972e85542abb",
+        "type": "group",
+        "z": "f1bdd0a078a6dc21",
+        "name": "piaware",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9717e0749a22094c",
+            "67c6bb54145e6ce8",
+            "219d84bb8f475cef",
+            "05cd7d9faa5a33b7",
+            "b3f5514c70832d0e",
+            "62a8c5816b858279",
+            "4530bfcf65372247",
+            "9e2fd5f68de67417",
+            "aeacbfad49722306",
+            "73db249bccfdfebb",
+            "6736c13275875282",
+            "a9038ca9b6de3588",
+            "61acba3fc370af08",
+            "27df76ee2414c964"
+        ],
+        "x": 74,
+        "y": 379,
+        "w": 1372,
+        "h": 262
+    },
+    {
+        "id": "9717e0749a22094c",
+        "type": "inject",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "check",
+        "props": [
+            {
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "N/A",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "61acba3fc370af08"
+            ]
+        ]
+    },
+    {
+        "id": "67c6bb54145e6ce8",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "request",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 500,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "219d84bb8f475cef",
+        "type": "change",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "set flow messages",
+        "rules": [
+            {
+                "t": "set",
+                "p": "f24_messages",
+                "pt": "flow",
+                "to": "payload.messages",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05cd7d9faa5a33b7",
+        "type": "switch",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "",
+        "property": "payload.messages",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "f24_messages",
+                "vt": "flow"
+            },
+            {
+                "t": "gt",
+                "v": "f24_messages",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 480,
+        "wires": [
+            [
+                "62a8c5816b858279",
+                "219d84bb8f475cef"
+            ],
+            [
+                "b3f5514c70832d0e",
+                "219d84bb8f475cef",
+                "73db249bccfdfebb"
+            ]
+        ]
+    },
+    {
+        "id": "b3f5514c70832d0e",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "up",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.messages",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 710,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "62a8c5816b858279",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "down",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.messages",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 710,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4530bfcf65372247",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "messages",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.messages",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9e2fd5f68de67417",
+        "type": "inject",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "restart",
+        "props": [
+            {
+                "p": "payload.messages",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "N/A",
+        "x": 870,
+        "y": 420,
+        "wires": [
+            [
+                "219d84bb8f475cef"
+            ]
+        ]
+    },
+    {
+        "id": "aeacbfad49722306",
+        "type": "split",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "27df76ee2414c964"
+            ]
+        ]
+    },
+    {
+        "id": "73db249bccfdfebb",
+        "type": "change",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "aircraft",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.aircraft",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 540,
+        "wires": [
+            [
+                "aeacbfad49722306"
+            ]
+        ]
+    },
+    {
+        "id": "6736c13275875282",
+        "type": "flight-post",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "",
+        "x": 1170,
+        "y": 540,
+        "wires": [
+            [
+                "a9038ca9b6de3588"
+            ]
+        ]
+    },
+    {
+        "id": "a9038ca9b6de3588",
+        "type": "debug",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "flight-post",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "61acba3fc370af08",
+        "type": "http request",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "piaware",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8080/data/aircraft.json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "4530bfcf65372247",
+                "05cd7d9faa5a33b7",
+                "67c6bb54145e6ce8"
+            ]
+        ]
+    },
+    {
+        "id": "27df76ee2414c964",
+        "type": "delay",
+        "z": "f1bdd0a078a6dc21",
+        "g": "7735972e85542abb",
+        "name": "API Rate Limit",
+        "pauseType": "queue",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1000,
+        "y": 540,
+        "wires": [
+            [
+                "6736c13275875282"
             ]
         ]
     }
