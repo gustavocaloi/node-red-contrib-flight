@@ -14,7 +14,7 @@ module.exports = function(RED) {
                 return;
             }
 
-            const apiUrl = `https://api.oiot.com.br/flight/icao/?icao=${flightCode}`;
+            const apiUrl = `https://api.oiot.com.br/flight/icao/?flight=${flightCode}`;
 
             axios.get(apiUrl)
                 .then(response => {
