@@ -16,8 +16,7 @@ module.exports = function(RED) {
             }
 
             const data = {
-                icao: icaoCode,
-                payload: payload
+                payload
             };
 
             axios.post(node.apiUrl, data)
