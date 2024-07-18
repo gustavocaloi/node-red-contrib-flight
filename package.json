@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-flight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Nó para consultar informações de voo por código ICAO",
   "author": "Gustavo Caloi <gustavocaloi@gmail.com>",
   "contributors": [

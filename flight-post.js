@@ -15,9 +15,7 @@ module.exports = function(RED) {
                 return;
             }
 
-            const data = {
-                payload
-            };
+            const data = payload;
 
             axios.post(node.apiUrl, data)
                 .then(response => {
